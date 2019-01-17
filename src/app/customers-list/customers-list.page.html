@@ -13,7 +13,10 @@
       <ion-label>
         <h2>{{customer.name.first}} {{customer.name.last}}</h2>
         <p>{{customer.address}}</p>
-      </ion-label>  
+      </ion-label>
+      <ion-button item-end (click)="deleteCustomer(customer)" color="danger">
+        <ion-icon name="trash"></ion-icon>&nbsp;Delete
+    </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
