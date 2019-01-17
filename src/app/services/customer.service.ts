@@ -39,10 +39,17 @@ export class CustomerService {
 
     if (customer.picture == null || customer.picture === undefined) {
       // Set the picture to the randomuser.me picture.
+      let imageGender: string = customer.gender.toLocaleLowerCase();
+      if (imageGender === 'male') {
+        imageGender = 'men';
+      } else if (imageGender === 'female') {
+        imageGender = 'women';
+      }
+
       customer.picture = {
-        large : 'https://randomuser.me/api/portraits/' + customer.gender + '/' + customer.randomImageId + '.jpg',
-        medium : 'https://randomuser.me/api/portraits/med/' + customer.gender + '/' + customer.randomImageId + '.jpg',
-        thumbnail : 'https://randomuser.me/api/portraits/thumb/' + customer.gender + '/' + customer.randomImageId + '.jpg'
+        large : 'https://randomuser.me/api/portraits/' + imageGender + '/' + customer.randomImageId + '.jpg',
+        medium : 'https://randomuser.me/api/portraits/med/' + imageGender + '/' + customer.randomImageId + '.jpg',
+        thumbnail : 'https://randomuser.me/api/portraits/thumb/' + imageGender + '/' + customer.randomImageId + '.jpg'
       };
     }
 
@@ -126,7 +133,7 @@ export class CustomerService {
     customer.age = 0;
     customer.eyeColor = '';
     customer.gender = '';
-    customer.randomImageId = this.randomIntFromInterval(1, 100);
+    customer.randomImageId = this.randomIntFromInterval(1, 99);
     customer.name = {first: '', last: ''};
     customer.company = '';
     customer.email = '';
@@ -139,11 +146,7 @@ export class CustomerService {
     customer.longitude = 0;
     customer.tags = ['test', 'data']; // TODO: Generate random tags;
     customer.friends = [{id: 0, name: 'Joe'}];
-    customer.picture = {
-      large : '',
-      medium : '',
-      thumbnail : ''
-    };
+    customer.picture = null;
 
     return customer;
   }

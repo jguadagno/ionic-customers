@@ -1,7 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>customers-list</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Customers Lists</ion-title>
+        <ion-buttons slot="end">
+          <ion-button icon-only color="primary" (click)="addCustomer(null)">
+            <ion-icon name="person-add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
@@ -14,6 +19,8 @@
         <h2>{{customer.name.first}} {{customer.name.last}}</h2>
         <p>{{customer.address}}</p>
       </ion-label>
+      <ion-button item-end (click)="addCustomer(customer)">Edit</ion-button>
+      <ion-button item-end (click)="gotoCustomer(customer)">View</ion-button>
       <ion-button item-end (click)="deleteCustomer(customer)" color="danger">
         <ion-icon name="trash"></ion-icon>&nbsp;Delete
     </ion-button>

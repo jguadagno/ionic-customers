@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title *ngIf="customer == undefined">Details</ion-title>
+      <ion-title *ngIf="customer">Details `{{customer.name.first}} {{customer.name.last}}`</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngIf="customer">
+      <ion-img src='{{customer.picture.medium}}'></ion-img>
+      <ion-card-header>
+          <ion-card-title>{{customer.name.first}} {{customer.name.last}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{customer.company}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

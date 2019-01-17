@@ -5,6 +5,7 @@ import { CustomerService } from '../services/customer.service';
 import { Customer } from '../services/customer.models';
 import { ApiResponse  } from '../services/api.response.model';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers-list',
@@ -14,7 +15,7 @@ import { AlertController } from '@ionic/angular';
 export class CustomersListPage implements OnInit {
 
   constructor(public http: HttpClient, public customersService: CustomerService,
-    private alertController: AlertController) { }
+    private alertController: AlertController, private router: Router) { }
 
   public customers: Customer[];
 
@@ -35,7 +36,7 @@ export class CustomersListPage implements OnInit {
           if (response.wasSuccessful) {
             this.loadCustomers();
           }
-        }         else {
+        } else {
           this.displayAlert('Failed', 'Failed to delete the contact!');
           console.log('Failed to delete');
         }
@@ -49,5 +50,13 @@ export class CustomersListPage implements OnInit {
       buttons: ['Ok']
     });
     await alert.present();
+  }
+
+  public gotoCustomer(customer: Customer) {
+    this.router.navigate(['/customers/view', customer.id]);
+  }
+
+  public addCustomer(customer: Customer) {
+    this.router.navigate(['/customers/edit', customer == null ? '' : customer.id]);
   }
 }

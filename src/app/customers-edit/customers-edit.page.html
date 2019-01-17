@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title *ngIf="customer == undefined">New Customer</ion-title>
+        <ion-title *ngIf="customer && customer.id != 0">Edit - `{{customer.name.first}} {{customer.name.last}}`</ion-title>
+        <ion-title *ngIf="customer && customer.id == 0">New Customer</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form *ngIf="customer" #customerForm="ngForm" (ngSubmit)="saveCustomer()" >
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.name.first" name="first"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.name.last" name="last"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Balance</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.balance" name="balance"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Age</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.age" name="age"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Eye Color</ion-label> 
+            <ion-select [(ngModel)]="customer.eyeColor" name="eyeColor">
+              <ion-select-option value="brown">brown</ion-select-option>
+              <ion-select-option value="blue">blue</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Gender</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.gender" name="gender"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Company</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.company" name="company"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.email" name="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Phone</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.phone" name="phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Address</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.address" name="address"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">About</ion-label>
+            <ion-input type="text" [(ngModel)]="customer.about" name="about"></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button type="submit"><ion-icon name="save"></ion-icon> Save</ion-button>
+      </form>
+  </ion-content>
